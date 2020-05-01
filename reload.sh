@@ -9,7 +9,7 @@ backup_vimrc() {
     i="$1"
   fi
   backupName=".vimrc.backup$i"
-  if [ ! -f "$backupName" ]; then
+  if [ ! -f ~/$backupName ]; then
     mv -v ~/.vimrc ~/$backupName
   else
     backup_vimrc "$(($i + 1))"
@@ -30,6 +30,7 @@ menu_vimrc() {
       echo "Installing vimrc"
       backup_vimrc
       install_vimrc
+      break
       ;;
     no)
       break
@@ -69,6 +70,7 @@ install_plugins() {
     # Code completion
     git clone --depth=1 https://github.com/ycm-core/YouCompleteMe
     cd YouCompleteMe
+    git submodule update --init --recursive
     python3 install.py --all
     cd ..
     # Code formatting
@@ -159,8 +161,6 @@ install_plugins() {
     git clone --depth=1 https://github.com/plasticboy/vim-markdown
     git clone --depth=1 https://github.com/mattn/vim-gist
     git clone --depth=1 https://github.com/vim-ruby/vim-ruby
-    git clone --depth=1 https://github.com/leafgarland/typescript-vim
-    git clone --depth=1 https://github.com/pangloss/vim-javascript
     git clone --depth=1 https://github.com/Vimjas/vim-python-pep8-indent
   else
     echo "There is nothing to be re-installed, did you mean installed?"
@@ -173,19 +173,22 @@ menu_plugins() {
     case $iplugins in
     install)
       echo "Cloning plugins in ~/.vim/bundle/"
-      if [! -d ~/.vim/bundle ]; then
+      if [ ! -d ~/.vim/bundle ]; then
         mkdir ~/.vim/bundle/
       fi
       install_plugins
+      break
       ;;
     update)
       echo "Updating cloned plugins"
       pull_all_subdirectories
+      break
       ;;
     reinstall)
       echo "Removing and re-installing all plugins"
       remove_old_plugins
       install_plugins
+      break
       ;;
     cancel)
       echo "Operation canceled"
