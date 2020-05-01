@@ -1,7 +1,26 @@
 #!/bin/bash
 
-menu_vimrc
-menu_plugins
+# Instalation script for the custom vim configuration
+
+backup_vimrc() {
+  if [ -z "$1"]; then
+    i=1
+  else
+    i="$1"
+  fi
+  backupName=".vimrc.backup$i"
+  if [ ! -f "$backupName" ]; then
+    mv -v ~/.vimrc ~/$backupName
+  else
+    backup_vimrc "$(($i + 1))"
+  fi
+}
+
+install_vimrc() {
+  ln -sv ~/.vim/vimrcs/main.vim ~/.vimrc
+  # Make directories
+  mkdir -vp ~/.vim/temp/{.backup,.swp,.undo}
+}
 
 menu_vimrc() {
   echo "Install vimrc? A backup is created as .vimrc.backup."
@@ -16,58 +35,6 @@ menu_vimrc() {
       break
       ;;
     *)
-      break
-      ;;
-    esac
-  done
-}
-
-backup_vimrc() {
-  if [ -z "$1"]; then
-    i=1
-  else
-    i="$1"
-  fi
-  backupName="~/.vimrc.backup$i"
-  if [ ! -f "$backupName" ]; then
-    cp ~/.vimrc "$backupName"
-  else
-    backup_vimrc "$(($i + 1))"
-  fi
-}
-
-install_vimrc() {
-  ln -sv ~/.vim/vimrcs/main.vim ~/.vimrc
-  # Make directories
-  mkdir -p ~/.vim/temp/{.backup,.swp,.undo}
-}
-
-menu_plugins() {
-  echo "Attention! The reinstall operation will destroy what's currently in your ~/.vim/bundle/ folder! There is NO coming back from this."
-  select iplugins in install update reinstall cancel; do
-    case $iplugins in
-    install)
-      echo "Cloning plugins in ~/.vim/bundle/"
-      if [! -d ~/.vim/bundle ]; then
-        mkdir ~/.vim/bundle/
-      fi
-      install_plugins
-      ;;
-    update)
-      echo "Updating cloned plugins"
-      pull_all_subdirectories
-      ;;
-    reinstall)
-      echo "Removing and re-installing all plugins"
-      remove_old_plugins
-      install_plugins
-      ;;
-    cancel)
-      echo "Operation canceled"
-      break
-      ;;
-    *)
-      echo "Operation canceled"
       break
       ;;
     esac
@@ -199,3 +166,38 @@ install_plugins() {
     echo "There is nothing to be re-installed, did you mean installed?"
   fi
 }
+
+menu_plugins() {
+  echo "Attention! The reinstall operation will destroy what's currently in your ~/.vim/bundle/ folder! There is NO coming back from this."
+  select iplugins in install update reinstall cancel; do
+    case $iplugins in
+    install)
+      echo "Cloning plugins in ~/.vim/bundle/"
+      if [! -d ~/.vim/bundle ]; then
+        mkdir ~/.vim/bundle/
+      fi
+      install_plugins
+      ;;
+    update)
+      echo "Updating cloned plugins"
+      pull_all_subdirectories
+      ;;
+    reinstall)
+      echo "Removing and re-installing all plugins"
+      remove_old_plugins
+      install_plugins
+      ;;
+    cancel)
+      echo "Operation canceled"
+      break
+      ;;
+    *)
+      echo "Operation canceled"
+      break
+      ;;
+    esac
+  done
+}
+
+menu_vimrc
+menu_plugins
