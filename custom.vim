@@ -65,8 +65,8 @@ set cmdheight=1
 " set termguicolors " Enable true color support.
 " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-" colorscheme solarized
-colorscheme jellybeans
+" " colorscheme solarized
+" colorscheme jellybeans
 
 " NOTE - only works after installing vim gtk
 " set clipboard=unnamedplus
@@ -79,9 +79,9 @@ set wildmode=longest,list,full
 " Disable automatic comenting on new line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-set backupdir=~/.vim/tmp/.backup//
-set directory=~/.vim/tmp/.swp//
-set undodir=~/.vim/tmp/.undo//
+set backupdir=~/.vim/temp/.backup//
+set directory=~/.vim/temp/.swp//
+set undodir=~/.vim/temp/.undo//
 
 " Indent with 2 spaces
 set expandtab
