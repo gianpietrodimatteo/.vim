@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/gianpietro/workspace/spring/gs-messaging-jms'
+let g:netrw_dirhist_3='/home/gianpietro/Dropbox/Programacao/Pitang/wallet-dashboard'
+let g:netrw_dirhist_2='/home/gianpietro/workspace/pitang/prompt/prompt-server'
+let g:netrw_dirhist_1='/home/gianpietro/workspace/pitang/wallet-dashboard/wallet-dashboard-server'
+let g:netrw_dirhist_0='/home/gianpietro/workspace/pitang/wallet-dashboard'
+let g:netrw_dirhist_9='/home/gianpietro/Dropbox/Programacao/Pitang/prompt'
+let g:netrw_dirhist_8='/home/gianpietro/dotfiles'
+let g:netrw_dirhist_7='/home/gianpietro/workspace/mongo-nestjs-starting'
+let g:netrw_dirhist_6='/home/gianpietro'
+let g:netrw_dirhist_5='/home/gianpietro/workspace'
