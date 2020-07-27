@@ -36,6 +36,13 @@ cnoremap <silent> q!<CR>  :call ConfirmQuit()<CR>
 nmap ZQ :call ConfirmQuit()<CR>
 cnoremap <silent> qa!<CR>  :call ConfirmQuitAll()<CR>
 
+function! DeleteThis()
+  if (confirm("Delete this file and close this buffer?", "&Yes\n&No", 2)==1)
+    :call delete(expand('%')) | bdelete!
+  endif
+endfu
+nmap <m-b> :call DeleteThis()<CR>
+
 
 "------------------------------------------------------------------------------
 " Basics
@@ -57,7 +64,7 @@ set incsearch
 
 set cmdheight=1
 
-" let mapleader =" "
+let mapleader =" "
 
 ""let g:solarized_termcolors=256
 ""set t_Co=256
@@ -69,7 +76,7 @@ set cmdheight=1
 " colorscheme jellybeans
 
 " NOTE - only works after installing vim gtk
-" set clipboard=unnamedplus
+set clipboard=unnamedplus
 
 " Activates filetype detection and other stuff and autocompletion
 filetype indent plugin on
@@ -157,6 +164,9 @@ nnoremap <M-h> :call ToggleHiddenAll()<CR>
 " Disable ex-mode mappings
 nnoremap Q <nop>
 
+" Stop spamming me with viminfo files
+set viminfo="NONE"
+
 
 "------------------------------------------------------------------------------
 " Basic keybindings
@@ -205,23 +215,26 @@ nnoremap <leader><Enter> i<Enter><Esc>
 nnoremap <Space>q @q
 
 " Quick clipboard cut, copy and paste
-nmap gm "+m
-nmap gM "+M
-nmap gy "+y
-nmap gY "+Y
-nmap gp "+p
-nmap gP "+P
+" nmap gm "+m
+" nmap gM "+M
+" nmap gy "+y
+" nmap gY "+Y
+" nmap gp "+p
+" nmap gP "+P
 
-vmap gm "+m
-vmap gM "+M
-vnoremap gy "+y
-vnoremap gY "+Y
-vnoremap gp "+p
-vnoremap gP "+P
+" vmap gm "+m
+" vmap gM "+M
+" vnoremap gy "+y
+" vnoremap gY "+Y
+" vnoremap gp "+p
+" vnoremap gP "+P
+" Now that I have cut this is obsolete
 
 " Select all
 nnoremap <C-a> ggVG
 
+" Stop highlighting:
+nnoremap <F3> :noh<CR>
 
 "------------------------------------------------------------------------------
 " Editor keybindings
@@ -271,7 +284,7 @@ nnoremap <leader><leader>i :setlocal spell! spelllang=pt<CR>
 " Correct indentation and apply line wrap
 nnoremap <m-f> V=Vgq<CR>
 " Correctly indent the whole file motherfuckerrr
-nnoremap <leader>f :g/./ normal gqq<CR>
+nnoremap <leader>f :g/./ normal gqq<CR>:noh<CR>
 
 " F7 corrects indentation
 nnoremap <F7> gg=G<C-o><C-o>
@@ -290,6 +303,10 @@ nnoremap <leader>9 I[](<Esc>A)<Esc>F[a
 
 " Uppercase first letter of line
 nnoremap <leader>u 0vU
+
+" New line
+" nmap <C-CR> o<Esc>
+
 "------------------------------------------------------------------------------
 " Plugin settings
 "------------------------------------------------------------------------------
