@@ -76,7 +76,8 @@ let mapleader =" "
 " colorscheme jellybeans
 
 " NOTE - only works after installing vim gtk
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
+set clipboard=unnamed
 
 " Activates filetype detection and other stuff and autocompletion
 filetype indent plugin on
@@ -214,20 +215,22 @@ nnoremap <leader><Enter> i<Enter><Esc>
 " Quick macros
 nnoremap <Space>q @q
 
-" Quick clipboard cut, copy and paste
-" nmap gm "+m
-" nmap gM "+M
-" nmap gy "+y
-" nmap gY "+Y
-" nmap gp "+p
-" nmap gP "+P
+" set clipboard=unnamed
 
-" vmap gm "+m
-" vmap gM "+M
-" vnoremap gy "+y
-" vnoremap gY "+Y
-" vnoremap gp "+p
-" vnoremap gP "+P
+" Quick clipboard cut, copy and paste
+" nmap m "*m
+" nmap M "*M
+" nmap y "*y
+" nmap Y "*Y
+" nmap p " *p
+" nmap P " *P
+
+" vmap m "*m
+" vmap M "*M
+" vmap y "*y
+" vmap Y "*Y
+" vmap p " *p
+" vmap P " *P
 " Now that I have cut this is obsolete
 
 " Select all
@@ -431,27 +434,6 @@ xnoremap m d
 nnoremap mm dd
 nnoremap M D
 
-" yoink
-let g:yoinkIncludeDeleteOperations = 1
-" Swap the most recent paste around in the yank history:
-nmap <c-n> <plug>(YoinkPostPasteSwapBack)
-" find a key for the swap foward
-nmap <c-ç> <plug>(YoinkPostPasteSwapForward)
-
-nmap p <plug>(YoinkPaste_p)
-nmap P <plug>(YoinkPaste_P)
-
-" Permanently cycle through history
-nmap [y <plug>(YoinkRotateBack)
-nmap ]y <plug>(YoinkRotateForward)
-
-" Format current paste ?
-nmap <c-=> <plug>(YoinkPostPasteToggleFormat)
-
-" Yanking now does not change the cursor position
-nmap y <plug>(YoinkYankPreserveCursorPosition)
-xmap y <plug>(YoinkYankPreserveCursorPosition)
-
 " subversive
 " Example config
 nmap <leader>s <plug>(SubversiveSubstituteRange)
@@ -479,11 +461,6 @@ xmap <leader><leader>s <plug>(SubversiveSubvertRange)
 
 nmap <leader><leader>ss <plug>(SubversiveSubvertWordRange)
 
-" Integration with yoink
-xmap s <plug>(SubversiveSubstitute)
-xmap p <plug>(SubversiveSubstitute)
-xmap P <plug>(SubversiveSubstitute)
-
 
 "------------------------------------------------------------------------------
 " Styles
@@ -503,13 +480,4 @@ autocmd FileType html nnoremap ,html <Esc>:-1read
 
 "*.sh
 autocmd FileType sh nnoremap ,sh :-1read $HOME/.vim/snippets/shebang.sh<CR>o
-
-" Temp this should not be needed...
-inoremap í í
-" set keymap=accents
-" you can use temporarely <C-K>a> or <C-K>a^
-" inoremap â <C-K>a^
-inoremap ^a Â<Esc>vua
-inoremap â â
-inoremap ć ç
 

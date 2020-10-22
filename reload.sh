@@ -108,8 +108,6 @@ install_plugins() {
     git clone --depth=1 https://github.com/tpope/vim-repeat
     # Separate cut and delete
     git clone --depth=1 https://github.com/svermeulen/vim-cutlass
-    # Yank history
-    git clone --depth=1 https://github.com/svermeulen/vim-yoink
     # Easier find and replace
     git clone --depth=1 https://github.com/svermeulen/vim-subversive
     # Easy motion
@@ -132,7 +130,6 @@ install_plugins() {
     ###############################################################################
     # amix ultimate vimrc
     git clone --depth=1 https://github.com/jiangmiao/auto-pairs
-    git clone --depth=1 https://github.com/maxbrunsfeld/vim-yankstack
     git clone --depth=1 https://github.com/mileszs/ack.vim
     git clone --depth=1 https://github.com/jlanzarotta/bufexplorer
     git clone --depth=1 https://github.com/vim-scripts/mayansmoke
